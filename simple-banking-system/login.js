@@ -1,3 +1,15 @@
+let changeColor   = document.getElementById('Color'),
+      colors      = ['#000048', '#B5C7A4', '#DCAFDE', '#A4DADA', '#B79F9F'];
+let   colorIndex  = 0;
+
+changeColor.addEventListener('click', () => {
+  document.body.style.backgroundColor = colors[colorIndex];      
+  colorIndex = (colorIndex + 1) % colors.length
+});
+document.getElementById("Village").addEventListener("mousemove", function() {
+    // document.body.style.color = "#198E1E";
+})
+
 document.getElementById("login-submit").addEventListener("click", function(){
     // get user email 
     const emailField = document.getElementById("user-email");
