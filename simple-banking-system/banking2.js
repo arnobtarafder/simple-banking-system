@@ -42,8 +42,9 @@ function getCurrentBalance() {
 
 function updateBalance(amount, isAdd) {
     const balanceTotal = document.getElementById("balance-total");
-    const balanceTotalText = balanceTotal.innerText;
-    const currentBalanceTotal = parseFloat(balanceTotalText);
+    // const balanceTotalText = balanceTotal.innerText;
+    // const currentBalanceTotal = parseFloat(balanceTotalText);
+    const currentBalanceTotal = getCurrentBalance();
     if(isAdd == true) {
         balanceTotal.innerText = currentBalanceTotal + amount;
     }
@@ -87,10 +88,14 @@ document.getElementById("withdraw-submit").addEventListener("click", function() 
        const withdrawInput = document.getElementById("withdraw-input");
        const withdrawAmountText = withdrawInput.value;
        const withdrawAmount = parseFloat(withdrawAmountText) */
-    const withdrawAmount = getInputValue("withdraw-input")
-    if(withdrawAmount > 0) {
+    const withdrawAmount = getInputValue("withdraw-input");
+    const currentBalance = getCurrentBalance();
+    if(withdrawAmount > 0 && withdrawAmount < currentBalance) {
         updateTotalField("withdraw-total",withdrawAmount);
         updateBalance(withdrawAmount, false)
+    }
+    if(withdrawAmount > currentBalance) {
+        console.log("Your cannot withdraw more than what you have in your balance");
     }
                              // console.log(withdrawAmountText);
     // get and update withdraw total 
